@@ -3,13 +3,15 @@ const heroes = [
         name: 'Slate Slabrock',
         type: 'dwarf',
         damage: 5,
-        health: 100
+        health: 100,
+        level: 1
     },
     {
         name: 'Flint Ironstag',
         type: 'elf',
         damage: 10,
-        health: 50
+        health: 50,
+        level: 1
     }
 ]
 
@@ -17,7 +19,7 @@ const boss = {
     health: 100,
     maxHealth: 100,
     damage: 5,
-    level: 1,
+    level: 1
 }
 
 let bossesDefeated = 0
@@ -79,6 +81,26 @@ function newBoss() {
     boss.maxHealth += 50
     boss.health = boss.maxHealth
     console.log(boss.level, boss.maxHealth, boss.health)
+}
+
+function levelHero(heroName) {
+    //find the right hero, add 1 their level -100 gold then draw
+    debugger
+    let currentHero = heroes.find((hero) => hero.name == heroName)
+    if (heroGold >= 100) {
+        currentHero.level++
+        heroGold -= 100
+        let flintLvl = document.getElementById("Flint Lvl")
+        if (currentHero.name == 'Flint Ironstag') {
+            flintLvl.innerText = `Level: ${currentHero.level}`
+        }
+
+        let slateLvl = document.getElementById("Slate Lvl")
+        if (currentHero.name == 'Slate Slabrock') {
+            slateLvl.innerText = `Level: ${currentHero.level}`
+        }
+        draw()
+    }
 }
 
 function draw() {
